@@ -3,8 +3,23 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class IceCreamClientGUI extends JFrame 
-{
+public class IceCreamClientGUI extends JFrame {
+     private static Connection connection;
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load the JDBC driver
+            connection = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12752861", "sql12752861", "pLwAVlV8ZI");
+            System.out.println("Connected to the database!");
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC Driver not found!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Database connection failed!");
+            e.printStackTrace();
+        }
+    }
+   
     private ArrayList<String> selectedFlavors = new ArrayList<>();
     private ArrayList<Double> selectedFlavorPrices = new ArrayList<>();
     private ArrayList<String> selectedToppings = new ArrayList<>();
